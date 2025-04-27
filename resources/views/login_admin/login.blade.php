@@ -14,33 +14,62 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 </head>
-<body>
-    {{-- SCREEN LOADER --}}
-    <div id="loading-screen">
-        <img src="{{ asset('storage/ibsmalogo.png') }}" alt="Loading" class="loader-image">
+ {{-- SCREEN LOADER --}}
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="d-flex justify-content-center align-items-center position-fixed top-0 start-0 w-100 h-100 bg-white">
+        <img src="{{ asset('storage/ibsmalogo.png') }}" alt="Loading" class="loader-image img-fluid">
     </div>
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            let loader = document.getElementById("loading-screen");
+    let loader = document.getElementById("loading-screen");
 
-            // Ensure the loader is visible on page load
-            loader.style.display = "flex";
+    if (loader) {
+        // Ensure loader is visible on page load
+        loader.style.display = "flex";
 
-            // Hide loader when the page fully loads
-            window.addEventListener("load", function () {
+        // Prevent scrolling while loader is visible
+        document.body.style.overflow = "hidden";
+
+        // Force scroll to top after page loads
+        window.addEventListener("load", function () {
+            setTimeout(() => {
+                loader.style.opacity = "0"; // Smooth fade-out
+                document.body.style.overflow = "auto"; // Restore scrolling
+
                 setTimeout(() => {
-                    loader.style.display = "none";
-                }, 1000); // 1-second delay for a smooth effect
-            });
-
-            // Show loader on form submission
-            let form = document.querySelector("form");
-            if (form) {
-                form.addEventListener("submit", function () {
-                    loader.style.display = "flex";
-                });
-            }
+                    loader.style.display = "none"; // Hide instead of removing
+                    loader.style.zIndex = "-1"; // ✅ Lower z-index
+                    loader.classList.add("hidden"); // ✅ Add hidden class
+                    window.scrollTo(0, 0); // Scroll to top after hiding loader
+                }, 500); // Delay for transition effect
+            }, 2000); // Loader stays for 2 seconds before disappearing
         });
+
+        // Show loader on form submission
+        let form = document.querySelector("form");
+        if (form) {
+            form.addEventListener("submit", function () {
+                loader.style.display = "flex";
+                loader.style.opacity = "1"; // Reset opacity
+                document.body.style.overflow = "hidden"; // Disable scrolling
+            });
+        }
+    }
+});
+
+// Function to fade out loader smoothly
+function fadeOutLoader(callback) {
+    let loader = document.getElementById("loading-screen");
+    if (!loader) return;
+
+    loader.style.opacity = "0";
+    setTimeout(() => {
+        loader.style.display = "none";
+        loader.style.zIndex = "-1"; // ✅ Lower z-index
+        if (callback) callback();
+    }, 800);
+}
     </script>
 
 
@@ -72,46 +101,104 @@
             }, 2000);
         });
     </script>
-
+<body>
 
     <section class="navbar">
-        <div class="social">
-            <a href="https://www.facebook.com/IBSMAnianAKO"><i class="fa-brands fa-facebook"></i></a>
-            {{-- <a href="#"><i class="fa-brands fa-instagram"></i></a> |
-            <a href="#"><i class="fa-brands fa-twitter"></i></a> |
-            <a href="#"><i class="fa-brands fa-youtube"></i></a> --}}
+<!-- Bootstrap Navbar -->
+<nav class="navbar navbar-expand-lg bg-white shadow-sm px-3">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+        <!-- Logo and Title -->
+        <div class="d-flex align-items-center flex-grow-1">
+            <img src="{{ asset('image/logo ibs,a.png') }}" alt="Logo" class="logos me-2" style="height: 50px;">
+            <h5 class="m-0 institute-text">
+                <span class="text-green">INSTITUTE</span> OF BUSINESS SCIENCE <br>
+                AND <span class="text-green">MEDICAL ARTS</span>
+            </h5>
         </div>
 
-            <div class="links">
-                    <div class="left" style="display: flex; justify-content: space-between; gap: 20px; margin-right:30px;">
-                        <a href="#"><strong>HOME</strong></a>
-                        <a href="#course"><strong>COURSES</strong></a>
-                        <a href="#activity"><strong>ACTIVITIES</strong></a>
-                    </div>
-                <div class="title">
-                    <img src="{{ asset('image/logo ibs,a.png') }}" alt="" class="logos">
-                    <h5 style="font-size: 20px;">
-                        <span style="color: #16C47F">INSTITUTE</span> OF BUSINESS SCIENCE <br>
-                        AND <span style="color: #16C47F">MEDICAL ARTS</span>
-                    </h5>
-                </div>
-                {{-- modified march 24 --}}
-                <div class="right" style="display: flex; justify-content: space-between; gap: 20px; margin-left:30px;">
-                    <!-- Mission Modal Trigger -->
-                <a href="#mission-vision-section" class="open-modal" data-modal="mission-modal"><strong>MISSION</strong></a>
+        <!-- Desktop Navigation -->
+        <div class="collapse navbar-collapse justify-content-end d-none d-lg-flex">
+            <ul class="navbar-nav gap-3">
+                <li class="nav-item"><a class="nav-link" href="#">HOME</a></li>
+                <li class="nav-item"><a class="nav-link scroll-to-about" href="#about-section">ABOUT US</a></li>
+                <li class="nav-item"><a class="nav-link" href="#course">COURSES</a></li>
+                <li class="nav-item"><a class="nav-link open-modal" data-modal="mission-modal" href="#">MISSION & VISION</a></li>
+                <li class="nav-item"><a class="nav-link" href="#activity">ACTIVITIES</a></li>
+            </ul>
+        </div>
 
-                <!-- Vision Modal Trigger -->
-                <a href="#mission-vision-section" class="open-modal" data-modal="vision-modal"><strong>VISION</strong></a>
+        <div class="d-flex align-items-center gap-3">
+            <!-- Login Button -->
+            <button type="button" class="btn btn-success shadow-sm" data-bs-toggle="modal" data-bs-target="#customInstructorLoginModal">
+                <i class="bi bi-box-arrow-in-right"></i> Login
+            </button>
 
-                <a href="#about-section" class="scroll-to-about"><strong>ABOUT US</strong></a>
-                </div>
+            <!-- Mobile Menu Button -->
+            <div class="d-lg-none d-flex flex-column justify-content-between burger-menu" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
+                <span class="bg-success rounded" style="height: 4px; width: 30px;"></span>
+                <span class="bg-success rounded" style="height: 4px; width: 30px;"></span>
+                <span class="bg-success rounded" style="height: 4px; width: 30px;"></span>
             </div>
+        </div>
+    </div>
+</nav>
 
-           <!-- Login Button (Triggers Modal) -->
-<button type="button" class="btn btn-success fw-bold shadow-sm" data-bs-toggle="modal" data-bs-target="#customAdminLoginModal">
-    <i class="fa fa-sign-in-alt"></i> Login
-</button>
+<!-- Mobile Sidebar Menu -->
+<!-- Mobile Sidebar Menu -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu" style="max-height: 100vh; background-color: #16C47F;">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title text-white fw-bold">Menu</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column gap-3">
+        <a href="#" class="nav-link text-white fw-bold d-flex align-items-center gap-2 active">
+            <i class="bi bi-house-door-fill"></i> HOME
+        </a>
+        <a href="#course" class="nav-link text-white fw-bold d-flex align-items-center gap-2">
+            <i class="bi bi-book-fill"></i> COURSES
+        </a>
+        <a href="#activity" class="nav-link text-white fw-bold d-flex align-items-center gap-2">
+            <i class="bi bi-calendar-event-fill"></i> ACTIVITIES
+        </a>
+        <a href="#mission-vision-section" class="nav-link text-white fw-bold d-flex align-items-center gap-2 open-modal" data-modal="mission-modal">
+            <i class="bi bi-flag-fill"></i> MISSION & VISION
+        </a>
+        <a href="#about-section" class="nav-link text-white fw-bold d-flex align-items-center gap-2 scroll-to-about">
+            <i class="bi bi-info-circle-fill"></i> ABOUT US
+        </a>
+    </div>
+</div>
+</section>
 
+    <!-- JavaScript for Menu Toggle -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let mobileMenuToggle = document.getElementById("mobileMenuToggle");
+            let mobileMenu = document.getElementById("mobileMenu");
+            let closeMenu = document.querySelector(".btn-close");
+            let links = document.querySelectorAll(".offcanvas-body .nav-link");
+
+            // Open Mobile Menu
+            // mobileMenuToggle.addEventListener("click", function () {
+            //     let bsOffcanvas = new bootstrap.Offcanvas(mobileMenu);
+            //     bsOffcanvas.show();
+            // });
+
+            // Close Menu on Button Click
+            closeMenu.addEventListener("click", function () {
+                let bsOffcanvas = bootstrap.Offcanvas.getInstance(mobileMenu);
+                bsOffcanvas.hide();
+            });
+
+            // Keep Active Link Highlighted
+            links.forEach(link => {
+                link.addEventListener("click", function () {
+                    links.forEach(l => l.classList.remove("active")); // Remove active from all
+                    this.classList.add("active"); // Add active to clicked link
+                });
+            });
+        });
+    </script>
 
 <!-- Custom Admin Login Modal -->
 <div class="modal fade admin-login-modal" id="customAdminLoginModal" data-bs-backdrop="false" data-bs-keyboard="false" tabindex="-1" aria-labelledby="customAdminLoginModalLabel" aria-hidden="true">
@@ -520,7 +607,6 @@
         });
     });
 </script>
-</section>
 {{-- INAYOS MARCH 24 --}}
     <!-- Mission Modal -->
 {{-- <div id="mission-modal" class="custom-modal">
