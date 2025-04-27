@@ -103,74 +103,47 @@ function fadeOutLoader(callback) {
     </script>
 <body>
 
-    <section class="navbar">
-<!-- Bootstrap Navbar -->
-<nav class="navbar navbar-expand-lg bg-white shadow-sm px-3">
-    <div class="container-fluid d-flex align-items-center justify-content-between">
-        <!-- Logo and Title -->
-        <div class="d-flex align-items-center flex-grow-1">
-            <img src="{{ asset('image/logo ibs,a.png') }}" alt="Logo" class="logos me-2" style="height: 50px;">
-            <h5 class="m-0 institute-text">
-                <span class="text-green">INSTITUTE</span> OF BUSINESS SCIENCE <br>
-                AND <span class="text-green">MEDICAL ARTS</span>
-            </h5>
-        </div>
+     {{-- MODIFIED MARCH 28 --}}
+     <section class="navbar">
+        <!-- Bootstrap Navbar -->
+        <nav class="navbar navbar-expand-lg bg-white shadow-sm px-3">
+            <div class="container-fluid d-flex align-items-center justify-content-between">
+                <!-- Logo and Title -->
+                <div class="d-flex align-items-center flex-grow-1">
+                    <img src="{{ asset('image/logo ibs,a.png') }}" alt="Logo" class="logos me-2" style="height: 50px;">
+                    <h5 class="m-0 institute-text">
+                        <span class="text-green">INSTITUTE</span> OF BUSINESS SCIENCE <br>
+                        AND <span class="text-green">MEDICAL ARTS</span>
+                    </h5>
+                </div>
 
-        <!-- Desktop Navigation -->
-        <div class="collapse navbar-collapse justify-content-end d-none d-lg-flex">
-            <ul class="navbar-nav gap-3">
-                <li class="nav-item"><a class="nav-link" href="#">HOME</a></li>
-                <li class="nav-item"><a class="nav-link scroll-to-about" href="#about-section">ABOUT US</a></li>
-                <li class="nav-item"><a class="nav-link" href="#course">COURSES</a></li>
-                <li class="nav-item"><a class="nav-link open-modal" data-modal="mission-modal" href="#">MISSION & VISION</a></li>
-                <li class="nav-item"><a class="nav-link" href="#activity">ACTIVITIES</a></li>
-            </ul>
-        </div>
+                <!-- Desktop Navigation -->
+                <div class="collapse navbar-collapse justify-content-end d-none d-lg-flex">
+                    <ul class="navbar-nav gap-3">
+                        <li class="nav-item"><a class="nav-link" href="#">HOME</a></li>
+                        <li class="nav-item"><a class="nav-link scroll-to-about" href="#about-section">ABOUT US</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#course">COURSES</a></li>
+                        <li class="nav-item"><a class="nav-link open-modal" data-modal="mission-modal" href="#">MISSION & VISION</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#activity">ACTIVITIES</a></li>
+                    </ul>
+                </div>
 
-        <div class="d-flex align-items-center gap-3">
-            <!-- Login Button -->
-            <button type="button" class="btn btn-success shadow-sm" data-bs-toggle="modal" data-bs-target="#customInstructorLoginModal">
-                <i class="bi bi-box-arrow-in-right"></i> Login
-            </button>
+                <div class="d-flex align-items-center gap-3">
+                    <!-- Desktop Login Button (Only visible on large screens) -->
+                    <button type="button" class="btn btn-success shadow-sm d-none d-lg-block" data-bs-toggle="modal" data-bs-target="#customAdminLoginModal">
+                        <i class="bi bi-box-arrow-in-right"></i> Login
+                    </button>
 
-            <!-- Mobile Menu Button -->
-            <div class="d-lg-none d-flex flex-column justify-content-between burger-menu" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
-                <span class="bg-success rounded" style="height: 4px; width: 30px;"></span>
-                <span class="bg-success rounded" style="height: 4px; width: 30px;"></span>
-                <span class="bg-success rounded" style="height: 4px; width: 30px;"></span>
+                    <!-- Mobile Menu Button (Only visible on mobile) -->
+                    <div class="d-lg-none d-flex flex-column justify-content-between burger-menu" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
+                        <span class="bg-success rounded" style="height: 4px; width: 30px;"></span>
+                        <span class="bg-success rounded" style="height: 4px; width: 30px;"></span>
+                        <span class="bg-success rounded" style="height: 4px; width: 30px;"></span>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</nav>
-
-<!-- Mobile Sidebar Menu -->
-<!-- Mobile Sidebar Menu -->
-<div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu" style="max-height: 100vh; background-color: #16C47F;">
-    <div class="offcanvas-header">
-        <h5 class="offcanvas-title text-white fw-bold">Menu</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body d-flex flex-column gap-3">
-        <a href="#" class="nav-link text-white fw-bold d-flex align-items-center gap-2 active">
-            <i class="bi bi-house-door-fill"></i> HOME
-        </a>
-        <a href="#course" class="nav-link text-white fw-bold d-flex align-items-center gap-2">
-            <i class="bi bi-book-fill"></i> COURSES
-        </a>
-        <a href="#activity" class="nav-link text-white fw-bold d-flex align-items-center gap-2">
-            <i class="bi bi-calendar-event-fill"></i> ACTIVITIES
-        </a>
-        <a href="#mission-vision-section" class="nav-link text-white fw-bold d-flex align-items-center gap-2 open-modal" data-modal="mission-modal">
-            <i class="bi bi-flag-fill"></i> MISSION & VISION
-        </a>
-        <a href="#about-section" class="nav-link text-white fw-bold d-flex align-items-center gap-2 scroll-to-about">
-            <i class="bi bi-info-circle-fill"></i> ABOUT US
-        </a>
-    </div>
-</div>
-</section>
-
-    <!-- JavaScript for Menu Toggle -->
+        </nav>
+        <!-- JavaScript for Menu Toggle -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             let mobileMenuToggle = document.getElementById("mobileMenuToggle");
@@ -199,6 +172,112 @@ function fadeOutLoader(callback) {
             });
         });
     </script>
+
+        <!-- Mobile Sidebar Menu -->
+        <div class="d-lg-none d-flex flex-column justify-content-between burger-menu" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
+            <span class="bg-success rounded" style="height: 4px; width: 30px;"></span>
+            <span class="bg-success rounded" style="height: 4px; width: 30px;"></span>
+            <span class="bg-success rounded" style="height: 4px; width: 30px;"></span>
+        </div>
+
+        <!-- Mobile Sidebar -->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu"
+            style="max-height: 100vh; background-color: #fff; border-radius: 15px 0 0 15px;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);">
+
+            <div class="offcanvas-header" style="border-bottom: 1px solid #ddd;">
+                <h5 class="offcanvas-title fw-bold text-dark">Menu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+
+            <div class="offcanvas-body d-flex flex-column gap-3">
+                <!-- Menu Links -->
+                <a href="#" class="nav-link fw-bold d-flex align-items-center gap-2 active menu-link"
+                    style="color: #000; font-size: 18px; padding: 12px; border-radius: 12px;
+                    font-weight: bold; padding-left: 30px; border-left: 5px solid #1c9162;
+                    transition: all 0.3s ease;">
+                    <i class="bi bi-house-door-fill" style="font-size: 1.5rem;"></i> HOME
+                </a>
+
+                <a href="#course" class="nav-link fw-bold d-flex align-items-center gap-2 menu-link"
+                    style="color: #000000; font-size: 18px; padding: 12px; border-radius: 10px;
+                    transition: all 0.3s ease;">
+                    <i class="bi bi-book-fill" style="font-size: 1.5rem;"></i> COURSES
+                </a>
+
+                <a href="#mission-vision-section" class="nav-link fw-bold d-flex align-items-center gap-2 open-modal menu-link"
+                    data-modal="mission-modal"
+                    style="color: #000000; font-size: 18px; padding: 12px; border-radius: 10px;
+                    transition: all 0.3s ease;">
+                    <i class="bi bi-flag-fill" style="font-size: 1.5rem;"></i> MISSION & VISION
+                </a>
+
+                <a href="#activity" class="nav-link fw-bold d-flex align-items-center gap-2 menu-link"
+                    style="color: #000000; font-size: 18px; padding: 12px; border-radius: 10px;
+                    transition: all 0.3s ease;">
+                    <i class="bi bi-calendar-event-fill" style="font-size: 1.5rem;"></i> ACTIVITIES
+                </a>
+
+                <a href="#about-section" class="nav-link fw-bold d-flex align-items-center gap-2 scroll-to-about menu-link"
+                    style="color: #000000; font-size: 18px; padding: 12px; border-radius: 10px;
+                    transition: all 0.3s ease;">
+                    <i class="bi bi-info-circle-fill" style="font-size: 1.5rem;"></i> ABOUT US
+                </a>
+
+                <!-- Mobile Login Button (Only visible on mobile) -->
+                <div class="d-lg-none mt-3 text-center">
+                    <button type="button" class="btn btn-success w-75 shadow-sm" data-bs-toggle="modal" data-bs-target="#customAdminLoginModal">
+                        <i class="bi bi-box-arrow-in-right"></i> Login
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const links = document.querySelectorAll(".menu-link");
+                const mobileMenu = new bootstrap.Offcanvas(document.getElementById("mobileMenu"));
+
+                links.forEach(link => {
+                    link.addEventListener("click", function () {
+                        // Remove active state from all links
+                        links.forEach(l => {
+                            l.classList.remove("active");
+                            l.style.color = "#000"; // Default text color
+                            l.style.fontWeight = "normal";
+                            l.style.borderLeft = "none";
+                            l.style.background = "transparent"; // Ensure background resets
+                        });
+
+                        // Set new active link
+                        this.classList.add("active");
+                        this.style.color = "#000"; // Active text color black
+                        this.style.fontWeight = "bold"; // Active bold text
+                        this.style.borderLeft = "5px solid #1c9162"; // Active left border
+
+                        // Close the sidebar when a link is clicked (on mobile)
+                        if (window.innerWidth < 992) {
+                            mobileMenu.hide();
+                        }
+                    });
+
+                    // Hover effect
+                    link.addEventListener("mouseover", function () {
+                        this.style.color = "#16C47F"; // Hover color
+                        this.style.transform = "translateX(8px)";
+                    });
+
+                    link.addEventListener("mouseout", function () {
+                        if (!this.classList.contains("active")) {
+                            this.style.color = "#000"; // Restore default text color
+                            this.style.transform = "none";
+                        }
+                    });
+                });
+            });
+        </script>
+
+    </section>
 
 <!-- Custom Admin Login Modal -->
 <div class="modal fade admin-login-modal" id="customAdminLoginModal" data-bs-backdrop="false" data-bs-keyboard="false" tabindex="-1" aria-labelledby="customAdminLoginModalLabel" aria-hidden="true">

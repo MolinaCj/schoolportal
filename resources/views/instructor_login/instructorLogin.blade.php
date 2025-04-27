@@ -102,7 +102,7 @@ function fadeOutLoader(callback) {
 
                 <div class="d-flex align-items-center gap-3">
                     <!-- Desktop Login Button (Only visible on large screens) -->
-                    <button type="button" class="btn btn-success shadow-sm d-none d-lg-block" data-bs-toggle="modal" data-bs-target="#customStudentLoginModal">
+                    <button type="button" class="btn btn-success shadow-sm d-none d-lg-block" data-bs-toggle="modal" data-bs-target="#customInstructorLoginModal">
                         <i class="bi bi-box-arrow-in-right"></i> Login
                     </button>
 
@@ -198,7 +198,7 @@ function fadeOutLoader(callback) {
 
                 <!-- Mobile Login Button (Only visible on mobile) -->
                 <div class="d-lg-none mt-3 text-center">
-                    <button type="button" class="btn btn-success w-75 shadow-sm" data-bs-toggle="modal" data-bs-target="#customStudentLoginModal">
+                    <button type="button" class="btn btn-success w-75 shadow-sm" data-bs-toggle="modal" data-bs-target="#customInstructorLoginModal">
                         <i class="bi bi-box-arrow-in-right"></i> Login
                     </button>
                 </div>
